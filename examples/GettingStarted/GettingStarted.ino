@@ -34,7 +34,11 @@ RF24 radio(9,10);
 //
 
 // Radio pipe addresses for the 2 nodes to communicate.
+
+// Default configuration
+//const uint64_t pipes[2] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL };
 const uint64_t pipes[2] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL };
+
 
 //
 // Role management
@@ -89,7 +93,7 @@ void setup(void)
   //if ( role == role_ping_out )
   {
     //radio.openWritingPipe(pipes[0]);
-    radio.openReadingPipe(1,pipes[1]);
+    radio.openReadingPipe(1,pipes[0]);
   }
   //else
   {
@@ -180,9 +184,9 @@ void loop(void)
         // Spew it
         printf("Got payload %lu...",got_time);
 
-	// Delay just a little bit to let the other unit
-	// make the transition to receiver
-	delay(20);
+  // Delay just a little bit to let the other unit
+  // make the transition to receiver
+  delay(20);
       }
 
       // First, stop listening so we can talk
