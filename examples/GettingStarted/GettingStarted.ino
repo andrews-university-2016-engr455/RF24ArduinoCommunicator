@@ -39,7 +39,6 @@ RF24 radio(9,10);
 //const uint64_t pipes[2] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL };
 const uint64_t pipes[2] = { 0xF0F0F0F0E1LL, 0xF0F0F0F0D2LL };
 
-
 //
 // Role management
 //
@@ -92,7 +91,7 @@ void setup(void)
 
   //if ( role == role_ping_out )
   {
-    //radio.openWritingPipe(pipes[0]);
+    radio.openWritingPipe(pipes[1]);
     radio.openReadingPipe(1,pipes[0]);
   }
   //else
