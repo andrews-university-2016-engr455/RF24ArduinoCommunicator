@@ -21,6 +21,7 @@
 #include "RF24.h"
 #include "printf.h"
 
+
 //
 // Hardware configuration
 //
@@ -172,6 +173,7 @@ void loop(void)
     // if there is data ready
     if ( radio.available() )
     {
+      char response[] = "I am Jonathan's Arduino, and I am online!";
       // Dump the payloads until we've gotten everything
       unsigned long got_time;
       bool done = false;
@@ -192,8 +194,10 @@ void loop(void)
       radio.stopListening();
 
       // Send the final one back.
-      radio.write( &got_time, sizeof(unsigned long) );
-      printf("Sent response.\n\r");
+//      radio.write( &got_time, sizeof(unsigned long) );
+      radio.write(&response, sizeof(response));
+      printf("Sent response:\n\r");
+      printf(response);
 
       // Now, resume listening so we catch the next packets.
       radio.startListening();
